@@ -1,0 +1,20 @@
+Get http://localhost:3001/Forms
+
+###
+
+POST http://localhost:3001/Forms/new
+Content-Type: application/json
+
+{
+  "title": "Trees",
+  "questions": [{
+    "text": "do you have tress"
+    },
+    {
+        "text": "do you love me ?"
+    }]
+}
+
+###
+
+DELETE http://localhost:3001/Forms/delete/657f60f4a7bb2274a12c30d5
