@@ -24,14 +24,15 @@ export default function Generate() {
 
         {showQuestionForm && (
           <div className="form-body">
+            
             <label>
-              Enter your question:
-              <input type="text" placeholder='Enter your question' />
+              Enter your question :
+              <input className='new-question-input' type="text" placeholder='Enter your question' />
             </label>
 
             <label>
               Select the type of response:
-              <select>
+              <select className='select-question-type'>
                 <option value="checkbox">Checkbox</option>
                 <option value="text">Text</option>
                 <option value="radio">Radio</option>
@@ -51,7 +52,8 @@ export default function Generate() {
             <span className="text">Add Question</span>
           </button>
           <button className="save-form-btn button" >
-            
+          <span className="text">Save</span>
+
           </button>
         </div>
       </div>
