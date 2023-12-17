@@ -7,7 +7,7 @@ export default function Home() {
     <div className='container'>
         <p className='no-form-text'>There is no form, please create one by pressing below 'create form' button.</p>
         <div className="button-container">
-                <Link to="/create-form">
+                <Link to="/generate">
 					              <button className="button" id="create-form-btn">
                         <span 
                             className="text">Create form
