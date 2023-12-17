@@ -9,8 +9,7 @@ export default function Generate() {
   const handleAddQuestionClick = () => {
     setShowQuestionForm(true);
     const handleSaveFormClick = () => {
-      // Ajoutez ici la logique pour sauvegarder le formulaire
-      setShowQuestionForm(false); // Vous pouvez masquer le formulaire après avoir sauvegardé
+      setShowQuestionForm(false); 
     };
   
   };
@@ -24,10 +23,10 @@ export default function Generate() {
         </div>
 
         {showQuestionForm && (
-          <div>
+          <div className="form-body">
             <label>
               Enter your question:
-              <input type="text" />
+              <input type="text" placeholder='Enter your question' />
             </label>
 
             <label>
@@ -38,6 +37,12 @@ export default function Generate() {
                 <option value="radio">Radio</option>
               </select>
             </label>
+            <button className='btn'>
+              <span className="text">Save</span>
+            </button>
+            <button className='btn'>
+              <span className="text">Canel</span>
+            </button>
           </div>
         )}
 
@@ -46,7 +51,7 @@ export default function Generate() {
             <span className="text">Add Question</span>
           </button>
           <button className="save-form-btn button" >
-            <span className="text">Save</span>
+            
           </button>
         </div>
       </div>
