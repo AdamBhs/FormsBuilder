@@ -12,17 +12,22 @@ export default function Generate() {
   const [titleQuestion, setTitleQuestion] = useState('');
   const [titleForm, setTitleForm] = useState('');
   const [FormData, setFormData] = useState([]);
+  const [enableQuestionType, setEnableQuestionType] = useState(false);
   
   const handleTitleFormChange = (event) => {
     setTitleForm(event.target.value);
   }
 
   const handleAddQuestionClick = () => {
+    if (titleForm.trim() !== '') {
     setShowQuestionForm(true);
+    setOptionsData([]);
     const handleSaveFormClick = () => {
       setShowQuestionForm(false); 
     };
     setOptionsData([]);
+  } else {
+    alert("Please enter a form title before adding a question.");}
   };
 
   const cancelAddQuestionClick = () => {
@@ -34,7 +39,9 @@ export default function Generate() {
 
   const handleTitleChange = (event) => {
     setTitleQuestion(event.target.value);
-  }
+  setEnableQuestionType(event.target.value.trim() !== '');
+  };
+
 
   const handleQuestionTypeChange = (event) => {
     setSelectedQuestionType(event.target.value);
@@ -47,6 +54,15 @@ export default function Generate() {
   };
 
   const saveQuestionClick = () => {
+    if (!titleQuestion.trim()) {
+      alert("Please enter a question before saving.");
+      return;
+    }
+
+    if (showTypeOfQuestion !== "text" && optionsData.length === 0) {
+      alert("Please enter options for checkboxes or radio buttons.");
+      return;
+    }
     const newQuestion = {
       title: titleQuestion,
       type: selectedQuestionType,
@@ -68,7 +84,7 @@ export default function Generate() {
         <h3>{`${index + 1}. ${question.title}`}</h3>
         {question.type === "text" && (
           <div>
-            <input className='text-input' type="text" placeholder='Enter your answer' readOnly={true}  />
+            <input className='text-input' type="text" placeholder='Enter your answer' readOnly={false}  />
           </div>
         )}
         {question.type === "checkbox" && (
@@ -76,8 +92,8 @@ export default function Generate() {
             {
               question.options.map((option, optionIndex) => (
                 <div className='checkBox-element'>
-                  <input className='text-checkBox' type="checkbox" value={option} key={optionIndex} checked={false} readOnly={true} />
-                  <p>{option}</p>
+                  <input className='text-checkBox' type="checkbox" value={option} key={optionIndex} checked={false} readOnly/>
+                  <label>{option}</label>
                 </div>
               ))
             }
@@ -89,8 +105,8 @@ export default function Generate() {
             {
               question.options.map((option, optionIndex) => (
                 <div className='checkBox-element'>
-                  <input className='text-checkBox' type="radio" value={option} key={optionIndex} checked={false} readOnly={true} />
-                  <p>{option}</p>
+                  <input className='text-checkBox' type="radio" value={option} key={optionIndex} checked={false} readOnly />
+                  <label>{option}</label>
                 </div>
               ))
             }
@@ -100,6 +116,9 @@ export default function Generate() {
       </div>
     ));
   };
+
+  
+  
   
   return (
     <div>
