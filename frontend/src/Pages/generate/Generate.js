@@ -3,7 +3,6 @@ import "./Generate.css"
 import Navbar from '../../navbar/Navbar'
 import {useState} from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 export default function Generate() {
   const [showQuestionForm, setShowQuestionForm] = useState(false);
@@ -66,15 +65,38 @@ export default function Generate() {
   const renderQuestions = () => {
     return FormData.map((question, index) => (
       <div key={index} className="question-container">
-        <h3>{question.title}</h3>
+        <h3>{`${index + 1}. ${question.title}`}</h3>
         {question.type === "text" && (
           <div>
-            Options:
-              {question.options.map((option, optionIndex) => (
-                <input key={optionIndex}>{option}</input>
-              ))}
+            <input className='text-input' type="text" placeholder='Enter your answer' readOnly={true}  />
           </div>
         )}
+        {question.type === "checkbox" && (
+          <div>
+            {
+              question.options.map((option, optionIndex) => (
+                <div className='checkBox-element'>
+                  <input className='text-checkBox' type="checkbox" value={option} key={optionIndex} checked={false} readOnly={true} />
+                  <p>{option}</p>
+                </div>
+              ))
+            }
+          </div>
+        )
+        }
+        {question.type === "radio" && (
+          <div>
+            {
+              question.options.map((option, optionIndex) => (
+                <div className='checkBox-element'>
+                  <input className='text-checkBox' type="radio" value={option} key={optionIndex} checked={false} readOnly={true} />
+                  <p>{option}</p>
+                </div>
+              ))
+            }
+          </div>
+        )
+        }
       </div>
     ));
   };
@@ -97,6 +119,7 @@ export default function Generate() {
             <label>
               Select the type of response:
               <select className='select-question-type' onChange={handleQuestionTypeChange} value={selectedQuestionType}>
+                <option value="">--Select--</option>
                 <option value="text">Text</option>
                 <option value="checkbox">Checkbox</option>
                 <option value="radio">Radio</option>
