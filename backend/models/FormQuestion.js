@@ -9,19 +9,18 @@ const formSchema = new Schema({
     required: true,
   },
   questions: [{
-    text: {
+    title: {
       type: String,
-      default: "Do you love me ?",
+      required: true,
     },
     answerType: {
       type: String,
       enum: ['Text', 'Checkbox', 'Radio'],
       default: "Text",
     },
-    obligatory: {
-      type: Boolean,
-      default: false,
-    }
+    options: {
+      type: [String],
+    },
   }],
   date: {
     type: Date,
