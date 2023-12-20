@@ -6,13 +6,11 @@ POST http://localhost:3001/Forms/new
 Content-Type: application/json
 
 {
-  "title": "Trees",
+  "title": "Schools",
   "questions": [{
-    "text": "do you have tress"
-    },
-    {
-        "text": "do you love me ?"
-    }]
+    "title": "do you like school ?"
+    }
+    ]
 }
 
 ###

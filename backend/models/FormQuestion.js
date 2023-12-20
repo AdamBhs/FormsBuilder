@@ -18,9 +18,10 @@ const formSchema = new Schema({
       enum: ['Text', 'Checkbox', 'Radio'],
       default: "Text",
     },
-    options: {
-      type: [String],
-    },
+    obligatory: {
+      type: Boolean,
+      default: false,
+    }
   }],
   date: {
     type: Date,
